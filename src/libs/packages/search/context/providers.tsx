@@ -2,6 +2,8 @@ import { QUERIES } from "@/libs/graph-ql";
 import { Context } from "./context";
 import { useLazyQuery } from "@apollo/client";
 import { Pokemon } from "@/libs/models/pokemon";
+import { useRef } from "react";
+import { INITIAL_OFFSET, PAGE_SIZE } from "@/libs/config/pagination";
 
 type ProviderProps = {
 	children: React.ReactNode;
@@ -9,23 +11,43 @@ type ProviderProps = {
 };
 
 const Provider = ({ initialData, children }: ProviderProps) => {
-	const [getData, { loading, data }] = useLazyQuery(QUERIES.GET_ALL_POKEMON, {
-		variables: {
-			offset: 93,
-			take: 10,
-		},
-	});
+	const [getData, { loading, data, fetchMore }] = useLazyQuery(
+		QUERIES.GET_ALL_POKEMON,
+		{
+			variables: {
+				offset: INITIAL_OFFSET,
+				take: PAGE_SIZE,
+			},
+		}
+	);
+
+	const initialFetch = useRef(true);
+
+	const pokemons = data?.pokemons ?? initialData;
+
+	console.log("🚀 ~ Provider ~ data", pokemons.length);
 
 	return (
 		<Context.Provider
 			value={{
-				pokemons: data?.pokemons ?? initialData,
+				pokemons,
 				isLoading: loading,
 				nextPage: () => {
-					getData({
+					if (initialFetch.current) {
+						initialFetch.current = false;
+						getData({
+							variables: {
+								offset: INITIAL_OFFSET + pokemons.length,
+								take: PAGE_SIZE * 2,
+							},
+						});
+						return;
+					}
+
+					fetchMore({
 						variables: {
-							offset: data?.pokemons.length,
-							take: 10,
+							offset: INITIAL_OFFSET + pokemons.length,
+							take: PAGE_SIZE,
 						},
 					});
 				},
