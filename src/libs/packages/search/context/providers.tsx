@@ -2,7 +2,7 @@ import { QUERIES } from "@/libs/graph-ql";
 import { Context } from "./context";
 import { useLazyQuery } from "@apollo/client";
 import { Pokemon } from "@/libs/models/pokemon";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { INITIAL_OFFSET, PAGE_SIZE } from "@/libs/config/pagination";
 
 type ProviderProps = {
@@ -11,12 +11,17 @@ type ProviderProps = {
 };
 
 const Provider = ({ initialData, children }: ProviderProps) => {
-	const [getData, { loading, data }] = useLazyQuery(QUERIES.GET_ALL_POKEMON, {
-		variables: {
-			offset: INITIAL_OFFSET,
-			take: PAGE_SIZE,
-		},
-	});
+	const [getData, { loading, data, fetchMore }] = useLazyQuery(
+		QUERIES.GET_ALL_POKEMON,
+		{
+			variables: {
+				offset: INITIAL_OFFSET,
+				take: PAGE_SIZE,
+			},
+		}
+	);
+
+	const initialFetch = useRef(true);
 
 	const pokemons = data?.pokemons ?? initialData;
 
@@ -34,10 +39,21 @@ const Provider = ({ initialData, children }: ProviderProps) => {
 						PAGE_SIZE + pokemons.length
 					);
 
-					getData({
+					if (initialFetch.current) {
+						initialFetch.current = false;
+						getData({
+							variables: {
+								offset: INITIAL_OFFSET,
+								take: PAGE_SIZE * 2,
+							},
+						});
+						return;
+					}
+
+					fetchMore({
 						variables: {
-							offset: INITIAL_OFFSET,
-							take: pokemons.length + PAGE_SIZE,
+							offset: INITIAL_OFFSET + pokemons.length,
+							take: PAGE_SIZE,
 						},
 					});
 				},
