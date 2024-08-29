@@ -16,7 +16,7 @@ export async function getStaticProps() {
 
 		return {
 			props: {
-				pokemons: data.pokemons as unknown as Array<Pokemon>,
+				pokemons: data.pokemons as Array<Pokemon>,
 			},
 
 			revalidate: INCREMENTAL_STATIC_REVALIDATION,

@@ -11,17 +11,12 @@ type ProviderProps = {
 };
 
 const Provider = ({ initialData, children }: ProviderProps) => {
-	const [getData, { loading, data, fetchMore }] = useLazyQuery(
-		QUERIES.GET_ALL_POKEMON,
-		{
-			variables: {
-				offset: INITIAL_OFFSET,
-				take: PAGE_SIZE,
-			},
-		}
-	);
-
-	const initialFetch = useRef(true);
+	const [getData, { loading, data }] = useLazyQuery(QUERIES.GET_ALL_POKEMON, {
+		variables: {
+			offset: INITIAL_OFFSET,
+			take: PAGE_SIZE,
+		},
+	});
 
 	const pokemons = data?.pokemons ?? initialData;
 
@@ -31,23 +26,18 @@ const Provider = ({ initialData, children }: ProviderProps) => {
 		<Context.Provider
 			value={{
 				pokemons,
-				isLoading: loading,
+				loading: loading,
 				nextPage: () => {
-					if (initialFetch.current) {
-						initialFetch.current = false;
-						getData({
-							variables: {
-								offset: INITIAL_OFFSET + pokemons.length,
-								take: PAGE_SIZE * 2,
-							},
-						});
-						return;
-					}
+					console.log(
+						"🚀 ~ Provider ~ INITIAL_OFFSET + pokemons.length:",
+						INITIAL_OFFSET,
+						PAGE_SIZE + pokemons.length
+					);
 
-					fetchMore({
+					getData({
 						variables: {
-							offset: INITIAL_OFFSET + pokemons.length,
-							take: PAGE_SIZE,
+							offset: INITIAL_OFFSET,
+							take: pokemons.length + PAGE_SIZE,
 						},
 					});
 				},

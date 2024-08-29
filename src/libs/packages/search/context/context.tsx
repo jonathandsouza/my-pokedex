@@ -2,7 +2,7 @@ import { Pokemon } from "@/libs/models/pokemon";
 import { createContext } from "react";
 
 type ContextType = {
-	isLoading: boolean;
+	loading: boolean;
 	pokemons: Array<Pokemon>;
 	nextPage: () => void;
 };
