@@ -15,6 +15,9 @@ function PokemonCard({ pokemon }: props) {
 				alt={pokemon.species}
 				width="100"
 				height="100"
+				onError={(e) => {
+					console.log(`on error capture: ${e}`);
+				}}
 			/>
 			<div className="mt-3">
 				<span>{pokemon.species}</span>

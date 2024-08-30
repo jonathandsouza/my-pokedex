@@ -10,19 +10,21 @@ import { INCREMENTAL_STATIC_REVALIDATION } from "@/libs/config/ttl";
 import { client, QUERIES } from "@/libs/graph-ql";
 import { Pokemon } from "@/libs/models/pokemon";
 
-export async function getStaticProps() {
+export async function getStaticProps(context: any) {
+	console.log("🚀 ~ getStaticProps ~ context:", context);
+
 	try {
-		const { data } = await client.query({
-			query: QUERIES.GET_ALL_POKEMON,
-			variables: {
-				offset: INITIAL_OFFSET,
-				take: PAGE_SIZE,
-			},
-		});
+		// const { data } = await client.query({
+		// 	query: QUERIES.GET_ALL_POKEMON,
+		// 	variables: {
+		// 		offset: INITIAL_OFFSET,
+		// 		take: PAGE_SIZE,
+		// 	},
+		// });
 
 		return {
 			props: {
-				pokemons: data.pokemons as Array<Pokemon>,
+				pokemon: context.params.id,
 			},
 
 			revalidate: INCREMENTAL_STATIC_REVALIDATION,
@@ -32,8 +34,12 @@ export async function getStaticProps() {
 	}
 }
 
+export async function getStaticPaths() {
+	return { paths: [], fallback: "blocking" };
+}
+
 export default function Page({
-	pokemons,
+	pokemon,
 }: InferGetServerSidePropsType<typeof getStaticProps>) {
 	return (
 		<>
@@ -63,17 +69,9 @@ export default function Page({
 				/>
 
 				<meta property="og:type" content="website" />
-
-				{/* {launches.slice(0, PAGE_SIZE).map(({ id, image }) => (
-					<link key={id} rel="preload" href={image} as="image" />
-				))} */}
 			</Head>
 
-			<PokemonSearch.Provider initialData={pokemons}>
-				<PokemonSearch.GridView />
-			</PokemonSearch.Provider>
-
-			<ScrollToTop />
+			{JSON.stringify(pokemon)}
 		</>
 	);
 }
