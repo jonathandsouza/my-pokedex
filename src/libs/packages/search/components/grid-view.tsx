@@ -4,11 +4,7 @@ import { InView } from "react-intersection-observer";
 
 function Grid() {
 	const { pokemons } = useContextHook();
-	return (
-		<>
-			<PokemonGridView pokemons={pokemons} />
-		</>
-	);
+	return <PokemonGridView pokemons={pokemons} />;
 }
 
 function InfiniteScroll() {

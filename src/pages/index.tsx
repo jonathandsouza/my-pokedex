@@ -1,4 +1,4 @@
-import { InferGetServerSidePropsType } from "next";
+import { GetStaticProps, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 
 import { PokemonSearch } from "@/libs/packages/search";
@@ -8,9 +8,9 @@ import { PAGE_SIZE } from "@/libs/config";
 import { INITIAL_OFFSET } from "@/libs/config/pagination";
 import { INCREMENTAL_STATIC_REVALIDATION } from "@/libs/config/ttl";
 import { client, QUERIES } from "@/libs/graph-ql";
-import { Pokemon } from "@/libs/models/pokemon";
+import { PokemonCard } from "@/libs/models/pokemon-card";
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
 	try {
 		const { data } = await client.query({
 			query: QUERIES.GET_ALL_POKEMON,
@@ -22,7 +22,7 @@ export async function getStaticProps() {
 
 		return {
 			props: {
-				pokemons: data.pokemons as Array<Pokemon>,
+				pokemons: data.pokemons as PokemonCard[],
 			},
 
 			revalidate: INCREMENTAL_STATIC_REVALIDATION,
@@ -30,7 +30,7 @@ export async function getStaticProps() {
 	} catch (e) {
 		console.error(`[ERROR] SSR FAILURE`, e);
 	}
-}
+};
 
 export default function Page({
 	pokemons,

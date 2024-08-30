@@ -1,9 +1,9 @@
+import { PokemonCard } from "@/libs/models/pokemon-card";
 import { PokemonCardPlaceholder } from "../molecules/pokemon-card-placeholder";
-import { PokemonCard } from "../molecules/pokemon-card";
-import { Pokemon } from "@/libs/models/pokemon";
+import { PokeCard } from "../molecules/pokemon-card";
 
 type LaunchGridViewProps = {
-	pokemons: Array<Pokemon>;
+	pokemons: Array<PokemonCard>;
 };
 
 type LaunchGridContainerProps = {
@@ -41,7 +41,7 @@ function PokemonGridView({ pokemons }: LaunchGridViewProps) {
 		<>
 			<PokemonGridContainer>
 				{pokemons.map((pokemon) => {
-					return <PokemonCard pokemon={pokemon} key={pokemon.key} />;
+					return <PokeCard pokemon={pokemon} key={pokemon.key} />;
 				})}
 			</PokemonGridContainer>
 		</>

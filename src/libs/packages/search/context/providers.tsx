@@ -1,13 +1,13 @@
 import { QUERIES } from "@/libs/graph-ql";
 import { Context } from "./context";
 import { useLazyQuery } from "@apollo/client";
-import { Pokemon } from "@/libs/models/pokemon";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { INITIAL_OFFSET, PAGE_SIZE } from "@/libs/config/pagination";
+import { PokemonCard } from "@/libs/models/pokemon-card";
 
 type ProviderProps = {
 	children: React.ReactNode;
-	initialData?: Array<Pokemon>;
+	initialData?: Array<PokemonCard>;
 };
 
 const Provider = ({ initialData, children }: ProviderProps) => {

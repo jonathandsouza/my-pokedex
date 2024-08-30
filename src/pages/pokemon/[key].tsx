@@ -1,30 +1,22 @@
 import { InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 
-import { PokemonSearch } from "@/libs/packages/search";
-import { ScrollToTop } from "@/libs/ui/molecules/scroll-to-top";
-
-import { PAGE_SIZE } from "@/libs/config";
-import { INITIAL_OFFSET } from "@/libs/config/pagination";
 import { INCREMENTAL_STATIC_REVALIDATION } from "@/libs/config/ttl";
 import { client, QUERIES } from "@/libs/graph-ql";
 import { Pokemon } from "@/libs/models/pokemon";
 
-export async function getStaticProps(context: any) {
-	console.log("🚀 ~ getStaticProps ~ context:", context);
-
+export const getStaticProps = async () => {
 	try {
-		// const { data } = await client.query({
-		// 	query: QUERIES.GET_ALL_POKEMON,
-		// 	variables: {
-		// 		offset: INITIAL_OFFSET,
-		// 		take: PAGE_SIZE,
-		// 	},
-		// });
+		const { data } = await client.query({
+			query: QUERIES.GET_POKEMON_DETAILS_BY_KEY,
+			variables: {
+				pokemon: "pikachu",
+			},
+		});
 
 		return {
 			props: {
-				pokemon: context.params.id,
+				pokemon: data.pokemon as Pokemon,
 			},
 
 			revalidate: INCREMENTAL_STATIC_REVALIDATION,
@@ -32,7 +24,7 @@ export async function getStaticProps(context: any) {
 	} catch (e) {
 		console.error(`[ERROR] SSR FAILURE`, e);
 	}
-}
+};
 
 export async function getStaticPaths() {
 	return { paths: [], fallback: "blocking" };

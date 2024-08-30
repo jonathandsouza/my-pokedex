@@ -6,14 +6,6 @@ const GET_ALL_POKEMON = gql`
 			num
 			species
 			sprite
-			stats: baseStats {
-				hp
-				defense
-				attack
-			}
-			types {
-				name
-			}
 			key
 		}
 	}
