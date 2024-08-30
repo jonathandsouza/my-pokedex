@@ -1,18 +1,34 @@
+import { PokemonGridView } from "@/libs/ui/organisms/grid-view";
 import { useContextHook } from "../context/hooks";
+import { InView } from "react-intersection-observer";
 
-function GridView() {
-	const { pokemons, nextPage, loading } = useContextHook();
+function Grid() {
+	const { pokemons } = useContextHook();
 	return (
 		<>
-			{JSON.stringify(pokemons, null, 2)}
+			<PokemonGridView pokemons={pokemons} />
+		</>
+	);
+}
 
-			<h1>{pokemons.length}</h1>
+function InfiniteScroll() {
+	const { loading, nextPage } = useContextHook();
+	return (
+		<InView
+			onChange={(inView) => {
+				inView && nextPage();
+			}}
+		>
+			{loading && <p>Loading...</p>}
+		</InView>
+	);
+}
 
-			<br />
-			<br />
-			<br />
-			<h2>{loading.toString()}</h2>
-			<button onClick={nextPage}>NextPage</button>
+function GridView() {
+	return (
+		<>
+			<Grid />
+			<InfiniteScroll />
 		</>
 	);
 }

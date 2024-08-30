@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, afterEach } from "vitest";
-import { LaunchCardPlaceholder } from "../launch-card-placeholder";
+import { LaunchCardPlaceholder } from "../pokemon-card-placeholder";
 import "@testing-library/jest-dom/vitest";
 import { cleanup } from "@testing-library/react";
 

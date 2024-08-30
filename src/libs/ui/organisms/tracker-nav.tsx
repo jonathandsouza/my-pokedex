@@ -20,9 +20,7 @@ function TrackerNav() {
 					className="flex items-center gap-2"
 					prefetch={false}
 				>
-					<span className="text-lg font-semibold">
-						Space X Launch Tracker
-					</span>
+					<span className="text-lg font-semibold">PokeDex</span>
 				</Link>
 				<nav className="hidden items-center gap-4 t:flex">
 					<Link
@@ -32,14 +30,6 @@ function TrackerNav() {
 						})}
 					>
 						Home
-					</Link>
-					<Link
-						href="/favorites"
-						className={cn("text-sm font-medium", {
-							underline: isFavoritesPath,
-						})}
-					>
-						Favorites
 					</Link>
 				</nav>
 				<Sheet>
@@ -64,14 +54,6 @@ function TrackerNav() {
 								})}
 							>
 								Home
-							</Link>
-							<Link
-								href="/favorites"
-								className={cn("text-sm font-medium", {
-									underline: isFavoritesPath,
-								})}
-							>
-								Favorites
 							</Link>
 						</div>
 					</SheetContent>

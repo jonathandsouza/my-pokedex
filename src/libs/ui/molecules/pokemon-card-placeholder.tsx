@@ -1,4 +1,4 @@
-function LaunchCardPlaceholder() {
+function PokemonCardPlaceholder() {
 	return (
 		<div
 			className="border bg-card  rounded-lg overflow-hidden shadow-lg basis-72 h-[393.6px]"
@@ -8,6 +8,6 @@ function LaunchCardPlaceholder() {
 	);
 }
 
-LaunchCardPlaceholder.displayName = "LaunchCardPlaceholder";
+PokemonCardPlaceholder.displayName = "PokemonCardPlaceholder";
 
-export { LaunchCardPlaceholder };
+export { PokemonCardPlaceholder };

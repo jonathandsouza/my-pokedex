@@ -1,12 +1,19 @@
 import { gql } from "@apollo/client";
 
 const GET_ALL_POKEMON = gql`
-	query GetAllPokemon($offset: Int, $take: Int) {
+	query ExampleQuery($offset: Int, $take: Int) {
 		pokemons: getAllPokemon(offset: $offset, take: $take) {
 			num
-			sprite
 			species
-			weight
+			sprite
+			stats: baseStats {
+				hp
+				defense
+				attack
+			}
+			types {
+				name
+			}
 			key
 		}
 	}
