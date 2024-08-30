@@ -9,7 +9,7 @@ function TrackerNav() {
 					prefetch={false}
 				>
 					<span className="text-3xl font-semibold text-secondary">
-						PokeDex
+						Pokédex
 					</span>
 				</Link>
 			</div>

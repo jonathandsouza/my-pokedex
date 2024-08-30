@@ -68,7 +68,7 @@ export default function Page({
 				<meta property="og:type" content="website" />
 			</Head>
 			<div className="container mt-10">
-				<PokemonDetails />
+				<PokemonDetails pokemon={pokemon} />
 			</div>
 		</>
 	);

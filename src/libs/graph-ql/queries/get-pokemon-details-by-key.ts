@@ -42,7 +42,7 @@ const GET_POKEMON_DETAILS_BY_KEY = gql`
 			species
 			key
 			color
-			baseStats {
+			stats: baseStats {
 				attack
 				defense
 				hp

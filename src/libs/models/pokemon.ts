@@ -4,6 +4,7 @@ type Pokemon = {
 	num: number;
 	species: string;
 	sprite: string;
+	color: string;
 	stats: {
 		hp: number;
 		defense: number;
