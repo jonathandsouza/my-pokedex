@@ -4,13 +4,18 @@ import Head from "next/head";
 import { INCREMENTAL_STATIC_REVALIDATION } from "@/libs/config/ttl";
 import { client, QUERIES } from "@/libs/graph-ql";
 import { Pokemon } from "@/libs/models/pokemon";
+import { PokemonDetails } from "@/libs/ui/organisms/pokemon-details";
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({
+	params,
+}: {
+	params: { key: string };
+}) => {
 	try {
 		const { data } = await client.query({
 			query: QUERIES.GET_POKEMON_DETAILS_BY_KEY,
 			variables: {
-				pokemon: "pikachu",
+				pokemon: params.key,
 			},
 		});
 
@@ -62,8 +67,9 @@ export default function Page({
 
 				<meta property="og:type" content="website" />
 			</Head>
-
-			{JSON.stringify(pokemon)}
+			<div className="container mt-10">
+				<PokemonDetails />
+			</div>
 		</>
 	);
 }

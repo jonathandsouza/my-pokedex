@@ -9,7 +9,7 @@ type props = {
 
 function PokeCard({ pokemon }: props) {
 	return (
-		<Link href={`/pokemon/${pokemon.key}`} prefetch={true}>
+		<Link href={`/pokemon/${pokemon.key}`}>
 			<div className="w-full max-w-[100px] h-[100px] mt-20 cursor-pointer">
 				<img
 					className="w-full h-full object-contain"
