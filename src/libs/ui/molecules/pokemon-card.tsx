@@ -8,7 +8,7 @@ type props = {
 
 function PokemonCard({ pokemon }: props) {
 	return (
-		<div className="w-full max-w-[100px] h-[100px] mt-20">
+		<div className="w-full max-w-[100px] h-[100px] mt-20 cursor-pointer">
 			<img
 				className="w-full h-full object-contain"
 				src={pokemon.sprite}
