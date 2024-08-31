@@ -1,7 +1,6 @@
-import { GetStaticProps, InferGetServerSidePropsType } from "next";
+import { InferGetServerSidePropsType } from "next";
 import Head from "next/head";
 
-import { PokemonSearch } from "@/libs/packages/search";
 import { ScrollToTop } from "@/libs/ui/molecules/scroll-to-top";
 
 import { PAGE_SIZE, PRODUCTION_URL } from "@/libs/config";
@@ -9,6 +8,7 @@ import { INITIAL_OFFSET } from "@/libs/config/pagination";
 import { INCREMENTAL_STATIC_REVALIDATION } from "@/libs/config/ttl";
 import { client, QUERIES } from "@/libs/graph-ql";
 import { PokemonCard } from "@/libs/models/pokemon-card";
+import { Pokedex } from "@/libs/packages/pokedex";
 
 export const getStaticProps = async () => {
 	try {
@@ -72,9 +72,9 @@ export default function Page({
 				))}
 			</Head>
 
-			<PokemonSearch.Provider initialData={pokemons}>
-				<PokemonSearch.GridView />
-			</PokemonSearch.Provider>
+			<Pokedex.Provider initialData={pokemons}>
+				<Pokedex.GridView />
+			</Pokedex.Provider>
 
 			<ScrollToTop />
 		</>

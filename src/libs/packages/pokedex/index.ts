@@ -2,7 +2,7 @@ import { GridView } from "./components/grid-view";
 import { SearchForm } from "./components/search-form";
 import { Provider } from "./context/providers";
 
-const PokemonSearch = {
+const Pokedex = {
 	Provider,
 	GridView,
 	SearchForm,
@@ -10,5 +10,5 @@ const PokemonSearch = {
 
 export {
 	// Provider & Components
-	PokemonSearch,
+	Pokedex,
 };

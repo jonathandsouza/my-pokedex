@@ -4,8 +4,8 @@ import Head from "next/head";
 import { INCREMENTAL_STATIC_REVALIDATION } from "@/libs/config/ttl";
 import { client, QUERIES } from "@/libs/graph-ql";
 import { Pokemon } from "@/libs/models/pokemon";
-import { PokemonDetails } from "@/libs/ui/organisms/pokemon-details";
 import { PRODUCTION_URL } from "@/libs/config";
+import { PokemonInfo } from "@/libs/packages/pokemon-info";
 
 export const getStaticProps = async ({
 	params,
@@ -71,10 +71,16 @@ export default function Page({
 				<meta property="og:type" content="website" />
 
 				<link rel="canonical" href={url} />
+
+				<link
+					key={pokemon.species}
+					rel="preload"
+					href={pokemon.sprite}
+					as="image"
+				/>
 			</Head>
-			<div className="container mt-10">
-				<PokemonDetails pokemon={pokemon} />
-			</div>
+
+			<PokemonInfo.Details pokemon={pokemon} />
 		</>
 	);
 }

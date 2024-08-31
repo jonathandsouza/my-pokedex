@@ -17,8 +17,14 @@ export default function App({ Component, pageProps }: AppProps) {
 					content="initial-scale=1.0, width=device-width"
 				/>
 
-				<link rel="dns-prefetch" href="https://api.spacexdata.com/" />
-				<link rel="dns-prefetch" href="https://images2.imgbox.com/" />
+				<link
+					rel="dns-prefetch"
+					href="https://graphqlpokemon.favware.tech/"
+				/>
+				<link
+					rel="dns-prefetch"
+					href="https://play.pokemonshowdown.com/"
+				/>
 			</Head>
 
 			<TrackerNav />
