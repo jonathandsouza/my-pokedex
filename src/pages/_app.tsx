@@ -25,6 +25,10 @@ export default function App({ Component, pageProps }: AppProps) {
 					rel="dns-prefetch"
 					href="https://play.pokemonshowdown.com/"
 				/>
+
+				<meta name="author" content="Jonathan Dsouza" />
+
+				<meta property="og:type" content="website" />
 			</Head>
 
 			<TrackerNav />

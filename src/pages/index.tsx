@@ -50,20 +50,17 @@ export default function Page({
 					content="Pokédex, Pokémon list, Pokémon database, Pokémon types, Pokémon evolutions, Pokémon abilities, Pokémon species"
 				/>
 
-				<meta name="author" content="Jonathan Dsouza" />
-
 				<meta
 					property="og:title"
 					content="Complete Pokémon List - Your Ultimate Pokédex"
 				/>
+
 				<meta
 					property="og:description"
 					content="Discover every Pokémon in existence with our comprehensive online Pokédex. Find detailed stats, types, evolutions, and more."
 				/>
 
 				<meta property="og:url" content={PRODUCTION_URL} />
-
-				<meta property="og:type" content="website" />
 
 				<link rel="canonical" href={PRODUCTION_URL} />
 

@@ -54,8 +54,6 @@ export default function Page({
 					content={`Pokédex, Pokémon list, Pokémon database, Pokémon types, Pokémon evolutions, Pokémon abilities, Pokémon species, Pokémon details, ${pokemon.species}`}
 				/>
 
-				<meta name="author" content="Jonathan Dsouza" />
-
 				<meta
 					property="og:title"
 					content={`Pokédex: ${pokemon.species}`}
@@ -67,8 +65,6 @@ export default function Page({
 				/>
 
 				<meta property="og:url" content={url} />
-
-				<meta property="og:type" content="website" />
 
 				<link rel="canonical" href={url} />
 
