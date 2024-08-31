@@ -1,6 +1,6 @@
 import { GraphQLProvider } from "@/libs/graph-ql";
 import { ErrorBoundary } from "@/libs/ui/molecules/error-boundary";
-import { TrackerNav } from "@/libs/ui/organisms/tracker-nav";
+import { NavBar } from "@/libs/ui/organisms/nav";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				<meta property="og:type" content="website" />
 			</Head>
 
-			<TrackerNav />
+			<NavBar />
 
 			<main className={`${inter.className}`}>
 				<ErrorBoundary>

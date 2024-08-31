@@ -1,5 +1,5 @@
 import Link from "next/link";
-function TrackerNav() {
+function NavBar() {
 	return (
 		<header className="bg-primary">
 			<div className="container flex h-16 items-center justify-between px-4 t:px-6">
@@ -17,6 +17,6 @@ function TrackerNav() {
 	);
 }
 
-TrackerNav.displayName = "TrackerNav";
+NavBar.displayName = "NavBar";
 
-export { TrackerNav };
+export { NavBar };
