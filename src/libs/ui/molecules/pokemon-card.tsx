@@ -9,7 +9,10 @@ type props = {
 
 function PokeCard({ pokemon }: props) {
 	return (
-		<div className="w-[100px] h-[100px] mt-20 cursor-pointer">
+		<div
+			className="w-[100px] h-[100px] mt-20 cursor-pointer"
+			data-testid="poke-card"
+		>
 			<Link href={`/pokemon/${pokemon.key}`}>
 				<img
 					className="w-full h-full object-contain"
