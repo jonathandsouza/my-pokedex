@@ -43,7 +43,7 @@ export default function Page({
 	return (
 		<>
 			<Head>
-				<title>Pokédex: {pokemon.species}</title>
+				<title>{`Pokédex: ${pokemon.species}`}</title>
 
 				<meta
 					name="description"
