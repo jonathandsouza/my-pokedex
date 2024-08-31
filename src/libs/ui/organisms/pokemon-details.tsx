@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Pokemon } from "@/libs/models/pokemon";
 import { Badge } from "../atoms/badge";
+import { PokemonTypeBadge } from "../molecules/pokemon-type-badge";
 
 type props = {
 	pokemon: Pokemon;
@@ -95,13 +96,7 @@ export function PokemonDetails({ pokemon }: props) {
 							</h3>
 							<div className="flex flex-wrap gap-2 mt-4">
 								{pokemon.types.map(({ name }) => (
-									<Badge
-										key={name}
-										variant="outline"
-										className="bg-[#f8d030] text-[#333]"
-									>
-										{name}
-									</Badge>
+									<PokemonTypeBadge key={name} type={name} />
 								))}
 							</div>
 						</div>
