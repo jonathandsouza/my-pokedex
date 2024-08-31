@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Pokemon } from "@/libs/models/pokemon";
-import { Badge } from "../atoms/ui/badge";
+import { Badge } from "../atoms/badge";
 
 type props = {
 	pokemon: Pokemon;
