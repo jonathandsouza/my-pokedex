@@ -4,7 +4,7 @@ import Head from "next/head";
 import { PokemonSearch } from "@/libs/packages/search";
 import { ScrollToTop } from "@/libs/ui/molecules/scroll-to-top";
 
-import { PAGE_SIZE } from "@/libs/config";
+import { PAGE_SIZE, PRODUCTION_URL } from "@/libs/config";
 import { INITIAL_OFFSET } from "@/libs/config/pagination";
 import { INCREMENTAL_STATIC_REVALIDATION } from "@/libs/config/ttl";
 import { client, QUERIES } from "@/libs/graph-ql";
@@ -38,35 +38,38 @@ export default function Page({
 	return (
 		<>
 			<Head>
-				<title>Pokedex</title>
+				<title>Pokédex</title>
 
 				<meta
 					name="description"
-					content="Explore and search a comprehensive list of SpaceX launches. Filter launches by date, mission type, and more. Stay updated with the latest SpaceX news and launch schedules."
+					content="Explore the complete list of all Pokémon, including detailed information about each species, evolutions, types, and abilities. Your ultimate online Pokédex."
 				/>
 
 				<meta
 					name="keywords"
-					content="SpaceX, launches, rockets, space missions, search SpaceX launches, filter SpaceX launches, Falcon 9, Falcon Heavy, Starship, space exploration"
+					content="Pokédex, Pokémon list, Pokémon database, Pokémon types, Pokémon evolutions, Pokémon abilities, Pokémon species"
 				/>
 
 				<meta name="author" content="Jonathan Dsouza" />
 
 				<meta
 					property="og:title"
-					content="SpaceX Launches - Search and Filter"
+					content="Complete Pokémon List - Your Ultimate Pokédex"
 				/>
-
 				<meta
 					property="og:description"
-					content="Discover the complete list of SpaceX launches. Search and filter launches by various criteria and keep up with the latest SpaceX events."
+					content="Discover every Pokémon in existence with our comprehensive online Pokédex. Find detailed stats, types, evolutions, and more."
 				/>
+
+				<meta property="og:url" content={PRODUCTION_URL} />
 
 				<meta property="og:type" content="website" />
 
-				{/* {launches.slice(0, PAGE_SIZE).map(({ id, image }) => (
-					<link key={id} rel="preload" href={image} as="image" />
-				))} */}
+				<link rel="canonical" href={PRODUCTION_URL} />
+
+				{pokemons.map(({ sprite, key }) => (
+					<link key={key} rel="preload" href={sprite} as="image" />
+				))}
 			</Head>
 
 			<PokemonSearch.Provider initialData={pokemons}>
