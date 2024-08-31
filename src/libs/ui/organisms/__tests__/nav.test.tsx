@@ -4,14 +4,12 @@ import { NavBar } from "../nav";
 import "@testing-library/jest-dom/vitest";
 
 describe("NavBar component", () => {
-	// Clean up the DOM before each test
 	beforeEach(() => {
-		cleanup(); // Ensures a fresh state before each test
+		cleanup();
 	});
 
-	// Optionally clean up after each test as well
 	afterEach(() => {
-		cleanup(); // Ensures everything is cleaned up after each test
+		cleanup();
 	});
 
 	it("should render the NavBar with the correct title", () => {

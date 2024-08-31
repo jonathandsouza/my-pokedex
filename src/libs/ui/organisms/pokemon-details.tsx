@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { Pokemon } from "@/libs/models/pokemon";
-import { Badge } from "../atoms/badge";
 import { PokemonTypeBadge } from "../molecules/pokemon-type-badge";
 
 type props = {
