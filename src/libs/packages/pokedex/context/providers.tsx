@@ -36,6 +36,7 @@ function Provider({ initialData, children }: ProviderProps) {
 			: data?.pokemons ?? initialData;
 
 	console.log("🚀 ~ Provider ~ pokemons:", pokemons);
+
 	return (
 		<Context.Provider
 			value={{
@@ -64,7 +65,12 @@ function Provider({ initialData, children }: ProviderProps) {
 				},
 
 				search: (term: string) => {
-					getFilteredPokemonList(term);
+					console.log("🚀 ~ Provider ~ term:", term);
+					getFilteredPokemonList({
+						variables: {
+							pokemon: term,
+						},
+					});
 				},
 			}}
 		>
