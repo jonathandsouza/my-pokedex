@@ -70,7 +70,7 @@ export function PokemonDetails({ pokemon }: props) {
 								]
 									.filter((ability) => ability)
 									.map(({ name, desc, shortDesc }: any) => (
-										<div>
+										<div key={name}>
 											<h4 className="text-[#333] font-bold">
 												{name}
 											</h4>
@@ -95,6 +95,7 @@ export function PokemonDetails({ pokemon }: props) {
 							<div className="flex flex-wrap gap-2 mt-4">
 								{pokemon.types.map(({ name }) => (
 									<Badge
+										key={name}
 										variant="outline"
 										className="bg-[#f8d030] text-[#333]"
 									>

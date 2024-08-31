@@ -2,15 +2,15 @@ import { PokemonCard } from "@/libs/models/pokemon-card";
 import { PokemonCardPlaceholder } from "../molecules/pokemon-card-placeholder";
 import { PokeCard } from "../molecules/pokemon-card";
 
-type LaunchGridViewProps = {
+type PokemonGridViewProps = {
 	pokemons: Array<PokemonCard>;
 };
 
-type LaunchGridContainerProps = {
+type PokemonGridContainerProps = {
 	children: React.ReactNode;
 };
 
-function PokemonGridContainer({ children }: LaunchGridContainerProps) {
+function PokemonGridContainer({ children }: PokemonGridContainerProps) {
 	return (
 		<div className="container mx-auto flex flex-wrap gap-8 jus justify-center">
 			{children}
@@ -28,7 +28,7 @@ function PokemonGridPlaceholder() {
 	);
 }
 
-function PokemonGridView({ pokemons }: LaunchGridViewProps) {
+function PokemonGridView({ pokemons }: PokemonGridViewProps) {
 	if (pokemons.length === 0) {
 		return (
 			<PokemonGridContainer>

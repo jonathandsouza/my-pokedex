@@ -1,3 +1,4 @@
-import type { Launch } from "./pokemon";
+import { Pokemon } from "./pokemon";
+import { PokemonCard } from "./pokemon-card";
 
-export type { Launch };
+export type { Pokemon, PokemonCard };

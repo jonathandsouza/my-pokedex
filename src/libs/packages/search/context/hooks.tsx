@@ -6,7 +6,7 @@ const useContextHook = function () {
 
 	if (!ctx) {
 		throw new Error(
-			"useLaunchTrackerViewer must be used within a LaunchTrackerViewerContextProvider"
+			"usePokemonViewer must be used within a PokemonViewerContextProvider"
 		);
 	}
 

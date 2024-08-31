@@ -3,7 +3,7 @@ function PokemonCardPlaceholder() {
 		<div
 			className="border bg-card  rounded-lg overflow-hidden shadow-lg basis-72 h-[393.6px]"
 			role="presentation"
-			data-testid="launch-card-placeholder"
+			data-testid="pokemon-card-placeholder"
 		></div>
 	);
 }

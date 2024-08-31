@@ -38,7 +38,7 @@ export default function Page({
 	return (
 		<>
 			<Head>
-				<title>SpaceX Launch Tracker</title>
+				<title>Pokedex</title>
 
 				<meta
 					name="description"
