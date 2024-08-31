@@ -28,7 +28,7 @@ describe("cn function", () => {
 
 	it("should merge Tailwind classes correctly", () => {
 		const result = cn("bg-red-500", "bg-blue-500", "text-white");
-		expect(result).toBe("bg-blue-500 text-white"); // tailwind-merge should merge bg-red-500 and bg-blue-500 to bg-blue-500
+		expect(result).toBe("bg-blue-500 text-white");
 	});
 
 	it("should handle no arguments", () => {
