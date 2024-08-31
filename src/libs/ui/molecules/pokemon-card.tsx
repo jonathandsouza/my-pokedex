@@ -17,8 +17,9 @@ function PokeCard({ pokemon }: props) {
 					alt={pokemon.species}
 					width="100"
 					height="100"
-					onError={(e) => {
+					onError={(e: any) => {
 						console.log(`on error capture: ${e}`);
+						e.target.src = "/placeholder.svg";
 					}}
 				/>
 				<div className="mt-3">
