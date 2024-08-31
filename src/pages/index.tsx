@@ -70,6 +70,7 @@ export default function Page({
 			</Head>
 
 			<Pokedex.Provider initialData={pokemons}>
+				<Pokedex.SearchForm />
 				<Pokedex.GridView />
 			</Pokedex.Provider>
 

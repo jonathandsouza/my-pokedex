@@ -1,5 +1,13 @@
+import { useContextHook } from "../context/hooks";
+
 function SearchForm() {
-	return <></>;
+	const { search } = useContextHook();
+
+	return (
+		<>
+			<button onClick={() => search("bulbasaur")}>Search</button>
+		</>
+	);
 }
 
 SearchForm.displayName = "SearchForm";

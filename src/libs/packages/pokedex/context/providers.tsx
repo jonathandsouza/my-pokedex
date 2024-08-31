@@ -1,7 +1,7 @@
 import { QUERIES } from "@/libs/graph-ql";
 import { Context } from "./context";
 import { useLazyQuery } from "@apollo/client";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { INITIAL_OFFSET, PAGE_SIZE } from "@/libs/config/pagination";
 import { PokemonCard } from "@/libs/models/pokemon-card";
 
@@ -10,7 +10,14 @@ type ProviderProps = {
 	initialData?: Array<PokemonCard>;
 };
 
+const searchTerm = "";
+
 function Provider({ initialData, children }: ProviderProps) {
+	const [
+		getFilteredPokemonList,
+		{ loading: filterLoading, data: filteredData },
+	] = useLazyQuery(QUERIES.GET_POKEMON_BY_TEXT);
+
 	const [getData, { loading, data, fetchMore }] = useLazyQuery(
 		QUERIES.GET_ALL_POKEMON,
 		{
@@ -23,13 +30,19 @@ function Provider({ initialData, children }: ProviderProps) {
 
 	const initialFetch = useRef(true);
 
-	const pokemons = data?.pokemons ?? initialData;
+	const pokemons =
+		searchTerm.length && !filterLoading
+			? filteredData?.pokemons ?? []
+			: data?.pokemons ?? initialData;
 
+	console.log("🚀 ~ Provider ~ pokemons:", pokemons);
 	return (
 		<Context.Provider
 			value={{
 				pokemons,
+
 				loading: loading,
+
 				nextPage: () => {
 					if (initialFetch.current) {
 						initialFetch.current = false;
@@ -48,6 +61,10 @@ function Provider({ initialData, children }: ProviderProps) {
 							take: PAGE_SIZE,
 						},
 					});
+				},
+
+				search: (term: string) => {
+					getFilteredPokemonList(term);
 				},
 			}}
 		>
