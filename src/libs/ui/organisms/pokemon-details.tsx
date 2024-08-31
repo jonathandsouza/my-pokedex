@@ -20,6 +20,9 @@ export function PokemonDetails({ pokemon }: props) {
 								width={50}
 								height={0}
 								className="w-full max-w-[200px] h-auto"
+								onError={(e: any) => {
+									e.target.src = "/placeholder.svg";
+								}}
 							/>
 						</div>
 						<div className="mt-8">
