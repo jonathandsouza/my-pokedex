@@ -25,7 +25,7 @@ describe("Start Component", () => {
 
 		const { getByText } = render(<Start />);
 
-		expect(getByText("Play Pokemon Game")).toBeInTheDocument();
+		expect(getByText("Play Guess The Pokémon Type")).toBeInTheDocument();
 		expect(getByText("Start")).toBeInTheDocument();
 	});
 
