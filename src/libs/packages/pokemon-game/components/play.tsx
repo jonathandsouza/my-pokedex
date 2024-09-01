@@ -63,7 +63,7 @@ function Play() {
 		<div className="text-center">
 			<div className="flex justify-between mb-10">
 				<div>
-					<span className="mr-2">Streak: {streak}</span>
+					<span className="mr-2 text-2xl">Streak: {streak}</span>
 				</div>
 				<div className="flex">
 					{arr.map((v, index) => (
@@ -109,6 +109,8 @@ function Play() {
 			/>
 
 			<Button
+				size={"lg"}
+				className="text-2xl"
 				onClick={() => {
 					guesses && guess(guesses);
 				}}
@@ -118,8 +120,9 @@ function Play() {
 			</Button>
 
 			<Button
-				className="ml-2"
+				className="ml-5 text-2xl"
 				variant={"secondary"}
+				size={"lg"}
 				onClick={() => {
 					end();
 				}}
