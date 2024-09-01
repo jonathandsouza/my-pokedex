@@ -1,6 +1,6 @@
 import { PRODUCTION_URL } from "@/libs/config";
 import { PokemonGame } from "@/libs/packages/pokemon-game";
-import { Head } from "next/document";
+import Head from "next/head";
 
 export default function Page() {
 	return (
