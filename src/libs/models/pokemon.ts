@@ -1,4 +1,5 @@
 import { PokemonAbility } from "./ability";
+import { POKEMON_TYPE } from "./types";
 
 type Pokemon = {
 	num: number;
@@ -14,7 +15,7 @@ type Pokemon = {
 		speed: number;
 	};
 	types: Array<{
-		name: string;
+		name: POKEMON_TYPE;
 	}>;
 	weight: number;
 	height: number;

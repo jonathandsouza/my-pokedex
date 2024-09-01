@@ -12,6 +12,15 @@ function NavBar() {
 						Pokédex
 					</span>
 				</Link>
+
+				<nav className="items-center gap-4">
+					<Link
+						href="/game"
+						className="text-2xl font-medium text-secondary"
+					>
+						Play
+					</Link>
+				</nav>
 			</div>
 		</header>
 	);

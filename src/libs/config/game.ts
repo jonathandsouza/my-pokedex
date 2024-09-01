@@ -1,0 +1,9 @@
+const GAME_LIVES = 4;
+enum GAME_STATE {
+	IN_PROGRESS = "IN_PROGRESS",
+	START = "START",
+	LOADING = "LOADING",
+	OVER = "OVER",
+}
+
+export { GAME_LIVES, GAME_STATE };

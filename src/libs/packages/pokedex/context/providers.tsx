@@ -16,7 +16,7 @@ function Provider({ initialData, children }: ProviderProps) {
 		{
 			variables: {
 				offset: INITIAL_OFFSET,
-				take: PAGE_SIZE,
+				take: 1,
 			},
 		}
 	);
