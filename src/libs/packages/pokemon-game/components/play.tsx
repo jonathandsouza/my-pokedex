@@ -40,7 +40,7 @@ function PokemonTypeSelector({
 function Play() {
 	const { pokemon, gameState, guess, lives, streak } = useContextHook();
 
-	if (gameState !== GAME.STATES.IN_PROGRESS) {
+	if (gameState === GAME.STATES.START || gameState === GAME.STATES.OVER) {
 		return null;
 	}
 
@@ -69,7 +69,7 @@ function Play() {
 				</div>
 			</div>
 			<img
-				className="object-contain mx-auto mb-10"
+				className="object-contain mx-auto mb-10 "
 				src={pokemon.sprite}
 				alt={pokemon.species}
 				width="100"
