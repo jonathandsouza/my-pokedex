@@ -68,8 +68,9 @@ function Play() {
 					))}
 				</div>
 			</div>
+
 			<img
-				className="object-contain mx-auto mb-10 "
+				className="object-contain mx-auto mb-10  min-h-40"
 				src={pokemon.sprite}
 				alt={pokemon.species}
 				width="100"
