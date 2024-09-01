@@ -21,7 +21,6 @@ function PokeCard({ pokemon }: props) {
 					width="100"
 					height="100"
 					onError={(e: any) => {
-						console.log(`on error capture: ${e}`);
 						e.target.src = "/placeholder.svg";
 					}}
 				/>
