@@ -11,7 +11,7 @@ function Start() {
 
 	return (
 		<div className="text-center">
-			<h1 className="text-4xl">Play Pokemon Game</h1>
+			<h1 className="text-4xl">Play Guess The Pokémon Type</h1>
 
 			<Button className="mt-10" onClick={start} size="lg">
 				<span className="text-2xl">Start</span>
