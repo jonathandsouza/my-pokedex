@@ -1,16 +1,52 @@
 /* eslint-disable @next/next/no-img-element */
 import { GAME_STATE } from "@/libs/config/game";
 import { useContextHook } from "../context/hooks";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PokemonTypeBadge } from "@/libs/ui/molecules/pokemon-type-badge";
-import { POKEMON_TYPE, POKEMON_TYPE_STRING } from "@/libs/models";
+import { Pokemon, POKEMON_TYPE, POKEMON_TYPE_STRING } from "@/libs/models";
 import { Button } from "@/libs/ui/atoms/button";
 import { HeartFilledIcon } from "@radix-ui/react-icons";
+
+type PokemonTypeSelectorProps = {
+	list: Array<POKEMON_TYPE>;
+	onSelect: (type: POKEMON_TYPE) => void;
+	label: string;
+};
+
+function PokemonTypeSelector({
+	list,
+	onSelect,
+	label,
+}: PokemonTypeSelectorProps) {
+	return (
+		<div className="mt-5 min-h-24 cursor-pointer">
+			<span className="text-xl">{label}</span>
+
+			<div className="flex gap-2 flex-wrap justify-center">
+				{list.map((type) => {
+					return (
+						<PokemonTypeBadge
+							key={type}
+							type={type}
+							onClick={() => {
+								onSelect(type);
+							}}
+						/>
+					);
+				})}
+			</div>
+		</div>
+	);
+}
 
 function Play() {
 	const { pokemon, gameState, guess, lives, streak, end } = useContextHook();
 
-	const [guesses, setGuesses] = useState<Set<POKEMON_TYPE>>(new Set());
+	const [guesses, setGuesses] = useState<POKEMON_TYPE | null>(null);
+
+	useEffect(() => {
+		setGuesses(null);
+	}, [pokemon?.species]);
 
 	if (gameState !== GAME_STATE.IN_PROGRESS) {
 		return null;
@@ -56,52 +92,27 @@ function Play() {
 
 			<h2 className="text-2xl">Guess the Pokemon Type ?</h2>
 
-			<div className="mt-5 min-h-24 cursor-pointer">
-				<span className="text-xl">Select:</span>
+			<PokemonTypeSelector
+				list={POKEMON_TYPE_STRING as any}
+				onSelect={(type) => {
+					setGuesses(type);
+				}}
+				label="Select:"
+			/>
 
-				<div className="flex gap-2 flex-wrap cursor-pointer mt-5 justify-center">
-					{POKEMON_TYPE_STRING.map((type) => {
-						return (
-							<PokemonTypeBadge
-								key={type}
-								type={type}
-								onClick={() => {
-									setGuesses((guesses) => {
-										guesses.add(type);
-										return new Set(guesses);
-									});
-								}}
-							/>
-						);
-					})}
-				</div>
-			</div>
-
-			<div className="mt-5 min-h-24 cursor-pointer">
-				<span className="text-xl">Selected:</span>
-
-				<div className="flex gap-2 flex-wrap justify-center">
-					{Array.from(guesses).map((type) => {
-						return (
-							<PokemonTypeBadge
-								key={type}
-								type={type}
-								onClick={() => {
-									setGuesses((guesses) => {
-										guesses.delete(type);
-										return new Set(guesses);
-									});
-								}}
-							/>
-						);
-					})}
-				</div>
-			</div>
+			<PokemonTypeSelector
+				list={guesses ? [guesses] : []}
+				onSelect={() => {
+					setGuesses(null);
+				}}
+				label="Selected:"
+			/>
 
 			<Button
 				onClick={() => {
-					guess(Array.from(guesses));
+					guesses && guess(guesses);
 				}}
+				disabled={!guesses}
 			>
 				Guess
 			</Button>

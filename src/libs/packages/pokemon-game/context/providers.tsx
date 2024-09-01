@@ -43,7 +43,7 @@ function Provider({ children }: ProviderProps) {
 					gameState,
 					lives,
 					pokemon,
-					guess: (types: Array<POKEMON_TYPE>) => {
+					guess: (type: POKEMON_TYPE) => {
 						setGameState(GAME_STATE.LOADING);
 
 						if (!pokemon) {
@@ -55,7 +55,7 @@ function Provider({ children }: ProviderProps) {
 							pokemon.types.map((type) => type.name)
 						);
 
-						const correct = types.every((type) => set.has(type));
+						const correct = set.has(type);
 
 						const goNext = async () => {
 							const pokemon = await fetchRandomPokemon();
