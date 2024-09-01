@@ -76,9 +76,6 @@ function Provider({ children }: ProviderProps) {
 							}
 						}
 					},
-					end: () => {
-						setGameState(GAME_STATE.OVER);
-					},
 					start: async () => {
 						setGameState(GAME_STATE.LOADING);
 						const pokemon = await fetchRandomPokemon();

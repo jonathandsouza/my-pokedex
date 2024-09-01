@@ -9,7 +9,6 @@ type ContextType = {
 	gameState: GAME_STATE;
 	pokemon: Pokemon | null;
 	guess: (types: POKEMON_TYPE) => void;
-	end: () => void;
 	start: () => void;
 };
 

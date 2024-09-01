@@ -34,8 +34,6 @@ describe("Play Component", () => {
 		expect(getByText("Streak: 5")).toBeInTheDocument();
 		expect(getByAltText("Pikachu")).toBeInTheDocument();
 		expect(getByText("Guess the Pokemon Type ?")).toBeInTheDocument();
-		expect(getByText("Guess")).toBeInTheDocument();
-		expect(getByText("End")).toBeInTheDocument();
 	});
 
 	it("should not render when game state is not GAME_STATE.IN_PROGRESS", () => {
@@ -55,25 +53,6 @@ describe("Play Component", () => {
 		expect(queryByText("Guess the Pokemon Type ?")).toBeNull();
 		expect(queryByText("Guess")).toBeNull();
 		expect(queryByText("End")).toBeNull();
-	});
-
-	it("should call end function when End button is clicked", () => {
-		const mockEnd = vi.fn();
-		(useContextHook as any).mockReturnValue({
-			pokemon: { species: "Pikachu", sprite: "/pikachu.png" },
-			gameState: GAME_STATE.IN_PROGRESS,
-			guess: vi.fn(),
-			lives: 3,
-			streak: 5,
-			end: mockEnd,
-		});
-
-		const { getByText } = render(<Play />);
-
-		const endButton = getByText("End");
-		fireEvent.click(endButton);
-
-		expect(mockEnd).toHaveBeenCalled();
 	});
 
 	it("should handle image error correctly", () => {

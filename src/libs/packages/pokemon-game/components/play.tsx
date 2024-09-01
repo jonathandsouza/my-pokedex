@@ -1,9 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContextHook } from "../context/hooks";
-import { useEffect, useState } from "react";
 import { PokemonTypeBadge } from "@/libs/ui/molecules/pokemon-type-badge";
 import { POKEMON_TYPE, POKEMON_TYPE_STRING } from "@/libs/models";
-import { Button } from "@/libs/ui/atoms/button";
 import { HeartFilledIcon } from "@radix-ui/react-icons";
 import { GAME } from "@/libs/config";
 
@@ -40,13 +38,7 @@ function PokemonTypeSelector({
 }
 
 function Play() {
-	const { pokemon, gameState, guess, lives, streak, end } = useContextHook();
-
-	const [guesses, setGuesses] = useState<POKEMON_TYPE | null>(null);
-
-	useEffect(() => {
-		setGuesses(null);
-	}, [pokemon?.species]);
+	const { pokemon, gameState, guess, lives, streak } = useContextHook();
 
 	if (gameState !== GAME.STATES.IN_PROGRESS) {
 		return null;
@@ -94,41 +86,9 @@ function Play() {
 
 			<PokemonTypeSelector
 				list={POKEMON_TYPE_STRING as any}
-				onSelect={(type) => {
-					setGuesses(type);
-				}}
+				onSelect={guess}
 				label="Select:"
 			/>
-
-			<PokemonTypeSelector
-				list={guesses ? [guesses] : []}
-				onSelect={() => {
-					setGuesses(null);
-				}}
-				label="Selected:"
-			/>
-
-			<Button
-				size={"lg"}
-				className="text-2xl"
-				onClick={() => {
-					guesses && guess(guesses);
-				}}
-				disabled={!guesses}
-			>
-				Guess
-			</Button>
-
-			<Button
-				className="ml-5 text-2xl"
-				variant={"secondary"}
-				size={"lg"}
-				onClick={() => {
-					end();
-				}}
-			>
-				End
-			</Button>
 		</div>
 	);
 }
