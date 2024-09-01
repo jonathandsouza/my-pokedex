@@ -1,5 +1,5 @@
+import { GAME } from "@/libs/config";
 import { useContextHook } from "../context/hooks";
-import { GAME_STATE } from "@/libs/config/game";
 import { cn } from "@/libs/utilities/cn";
 
 type props = {
@@ -9,7 +9,7 @@ type props = {
 function Loading({ children }: props) {
 	const { gameState } = useContextHook();
 
-	const loading = gameState === GAME_STATE.LOADING;
+	const loading = gameState === GAME.STATES.LOADING;
 
 	return (
 		<div className={cn({ "opacity-20 pointer-events-none": loading })}>

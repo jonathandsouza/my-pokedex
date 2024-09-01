@@ -1,11 +1,11 @@
+import { GAME } from "@/libs/config";
 import { useContextHook } from "../context/hooks";
-import { GAME_STATE } from "@/libs/config/game";
 import { Button } from "@/libs/ui/atoms/button";
 
 function Start() {
 	const { start, gameState } = useContextHook();
 
-	if (gameState !== GAME_STATE.START) {
+	if (gameState !== GAME.STATES.START) {
 		return null;
 	}
 

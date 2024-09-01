@@ -1,11 +1,11 @@
-import { GAME_STATE } from "@/libs/config/game";
+import { GAME } from "@/libs/config";
 import { useContextHook } from "../context/hooks";
 import { Button } from "@/libs/ui/atoms/button";
 
 function End() {
 	const { gameState, streak, start } = useContextHook();
 
-	if (gameState !== GAME_STATE.OVER) {
+	if (gameState !== GAME.STATES.OVER) {
 		return null;
 	}
 	return (

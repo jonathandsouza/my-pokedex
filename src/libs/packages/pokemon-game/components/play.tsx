@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import { GAME_STATE } from "@/libs/config/game";
 import { useContextHook } from "../context/hooks";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { PokemonTypeBadge } from "@/libs/ui/molecules/pokemon-type-badge";
-import { Pokemon, POKEMON_TYPE, POKEMON_TYPE_STRING } from "@/libs/models";
+import { POKEMON_TYPE, POKEMON_TYPE_STRING } from "@/libs/models";
 import { Button } from "@/libs/ui/atoms/button";
 import { HeartFilledIcon } from "@radix-ui/react-icons";
+import { GAME } from "@/libs/config";
 
 type PokemonTypeSelectorProps = {
 	list: Array<POKEMON_TYPE>;
@@ -48,7 +48,7 @@ function Play() {
 		setGuesses(null);
 	}, [pokemon?.species]);
 
-	if (gameState !== GAME_STATE.IN_PROGRESS) {
+	if (gameState !== GAME.STATES.IN_PROGRESS) {
 		return null;
 	}
 
